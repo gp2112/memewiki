@@ -1,5 +1,7 @@
 # Memewiki
 
+## Project Structure
+
 ```tree
 memewiki
 │   ├── __init__.py
