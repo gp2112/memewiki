@@ -1,5 +1,22 @@
 # Memewiki
 
+```tree
+memewiki
+│   ├── __init__.py
+│   ├── controllers
+│   ├── models
+│   ├── static
+│   ├── templates
+│   └── views
+├── poetry.lock
+├── pyproject.toml
+├── README.md
+└── tests
+    ├── __init__.py
+    └── test_memewiki.py
+```
+
+
 ## Development Environment Setup
 
 ```bash
