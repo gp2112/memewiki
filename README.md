@@ -1,15 +1,22 @@
 # Memewiki
 
-## Environment Setup
+## Development Environment Setup
 
 ```bash
-pip install .
+$ python -m venv .env
+$ source .env/bin/activate
+$ pip install .
+```
+To exit your environment:
+
+```bash
+$ deactivate
 ```
 
 or, if you have Poetry:
 
 ```bash
-poetry install
+$ poetry install
 ```
 
 ## PostgreSQL Install
