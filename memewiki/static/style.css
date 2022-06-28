@@ -1,0 +1,14 @@
+
+#replies-list {
+    margin: 5%;
+}
+
+#post img {
+    width: 20%;
+    max-height: 300px;
+    border: solid #f23030 4px;
+}
+
+#post p {
+    display: inline;
+}

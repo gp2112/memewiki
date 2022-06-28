@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         {% for style in styles %}
-            <link href="{{ url_for('static', filename='{{ style }}') }}" rel="stylesheet" type="text/css" />
+            <link href="{{ url_for('static', filename=style) }}" rel="stylesheet" type="text/css" />
         {% endfor %}
 </head>
 
@@ -38,7 +38,7 @@
                 
         </nav>
     </header>
-    <div id="container">
+    <div id="container" class="container">
         {% block container %}{% endblock %}
     </div>
 </body>

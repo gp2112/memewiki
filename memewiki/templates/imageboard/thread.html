@@ -2,20 +2,31 @@
 
 {% block container %}
 
-<div id="replies-list">
-    {% for reply in replies %}
-        <div class="reply">
-            <p class="reply-content">{{reply.content}}</p>
-            <p class="reply-author">{{reply.author}}</p>
-        </div>
-    {% endfor %}
+<div id="post">
+    <h2>Doge thread, common!!!</h2>
+    <p class="text-left"><strong>{{ author }}</strong></p>
+    <img src="">
 </div>
+
+<ul id="replies-list" class="list-unstyled">
+    {% for reply in replies %}
+    <li>
+        <dl>
+            <dt class="reply-author">{{reply.author}}</dt>
+            <dd class="reply-content">{{reply.content}}</dd>
+        </dl>
+    </li>
+    {% endfor %}
+</ul>
 
 <div id="input-reply">
     <form>
-        <textarea></textarea>
+        <div class="form-group">
+            <label for="mycontent">Comment as guip2112</label>
+            <textarea id="mycontent" class="form-control"></textarea>
+        </div>
         <input type="file">
-        <input type="submit">
+        <input type="submit" value="Enviar" class="btn btn-primary">
     </form>
 </div>
 
