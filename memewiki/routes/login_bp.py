@@ -4,3 +4,5 @@ from memewiki.controller import login
 login_bp = Blueprint('login_bp', __name__)
 
 login_bp.get('/')(login.login)
+
+login_bp.post('/')(login.loginPost)

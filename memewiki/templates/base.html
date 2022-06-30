@@ -27,7 +27,12 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Forum</a></li>
                     <li><a href="#">Sobre</a></li>
-                    <li><a href="/login">Login/Sign up</a></li>
+                    {% if not username %}
+                        <li><a href="/login">Login/Sign up</a></li>
+                    {% else %}
+                    <li><a href="/profile">{{ username }}</a></li>
+                    <li><a style="color:blue" href="/logout">logout</a></li>
+                    {% endif %}
                 </ul>
 
                 <form class="navbar-form navbar-right">
