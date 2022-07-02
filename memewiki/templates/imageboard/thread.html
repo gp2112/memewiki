@@ -3,30 +3,54 @@
 {% block container %}
 
 <div id="post">
-    <h2>Doge thread, common!!!</h2>
-    <h5><strong>{{ author }}</h5>
-    <img src="{{ image }}">
+    <h2>{{ title }}</h2>
+    <div>por <a href="/u/{{ author }}">u/{{ author }}</a></div>
+    <p>
+    <a href="{{ url_for('static', filename='uploads/'+image) }}">
+        <img src="{{ url_for('static', filename='uploads/'+image) }}">
+    </a>
+        <span style="margin-left: 3%">{{ descricao }}</span>
+    </p>
 </div>
 
 <ul id="replies-list" class="list-unstyled">
     {% for reply in replies %}
     <li>
         <dl>
-            <dt class="reply-author">{{reply.author}}</dt>
-            <dd class="reply-content">{{reply.content}}</dd>
+            <dt class="reply-author">
+                <a href="/u/{{ reply.usuario.id }}">u/{{reply.usuario.nome}}</a>
+                <span style="font-size: 0.7em; margin-left: 1em">
+                    {{ reply.datahora.strftime('%d/%m/%Y - %H:%M') }}
+                </span>
+            </dt>
+            <dd class="reply-content">{{reply.texto}}</dd>
+            {% if reply.midia %}
+            <a href="{{ url_for('static', filename='uploads/'+reply.midia.url) }}">
+                <img src="{{ url_for('static', filename='uploads/'+reply.midia.url) }}" width="250">
+            </a>
+            {% endif %}
         </dl>
     </li>
     {% endfor %}
 </ul>
 
 <div id="input-reply">
-    <form>
+    <form action="/board/thread/{{ id }}/comment" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="mycontent">Comment as guip2112</label>
-            <textarea id="mycontent" class="form-control"></textarea>
+            {% if username %}
+            <label for="mycontent">Comentando como {{ username }} <a href="/logout">(sair)</a></label>
+            {% else %}
+                <label for="mycontent"><a href="/login">Entre</a> ou <a href="/signup">registre-se</a> para poder comentar!</label>
+            {% endif %}
+            <textarea id="mycontent" class="form-control" name="text"></textarea>
         </div>
-        <input type="file">
-        <input type="submit" value="Enviar" class="btn btn-primary">
+        <input type="file" name="image">
+        {% if username %}
+            <input type="submit" value="Enviar" class="btn btn-primary">
+        {% else %}
+            <input type="submit" value="Enviar" class="btn btn-primary" disabled>
+        {% endif %}
+        <a href="../" class="btn btn-default">Voltar</a>
     </form>
 </div>
 

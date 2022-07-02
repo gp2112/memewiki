@@ -42,3 +42,11 @@
     margin-top: 1%;
 
 }
+
+#threads li {
+    margin-top: 1%;
+}
+
+#threads li img {
+    max-height: 250px;
+}
