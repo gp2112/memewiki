@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<ul class="list-group" id="threads">
+    <div class="text-right">
+        <a href="thread/create" class="btn btn-primary">Criar uma Thread</a>
+    </div>
+    {% for thread in threads %}
+        <li class="list-group-item">
+            <div>
+                <a href="/board/thread/{{ thread.id }}"><h4>{{ thread.titulo }}</h4></a>
+                <p>
+                    <a href="/u/{{ thread.usuario.id }}">u/{{ thread.usuario.nome }}</a>
+                    <span class="text-right text-black-50">{{ thread.datahora }}</span>
+                </p>
+            </div>
+            <a href="{{ url_for('static', filename='uploads/'+thread.midia.url) }}">
+                <img src="{{ url_for('static', filename='uploads/'+thread.midia.url) }}" width="300">
+            </a>
+            <p><a href="/board/thread/{{ thread.id }}">Comentarios</a></p>
+        </li>
+
+    {% endfor %}
+</ul>
+
+{% endblock %}

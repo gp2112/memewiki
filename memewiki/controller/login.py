@@ -34,5 +34,5 @@ def logout():
 
     session['username'] = None
 
-    return redirect('/', 301)
+    return redirect(request.headers.get('Referer', '/'))
 

@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# ignore upload directory
+memewiki/static/uploads/*
+
 # Distribution / packaging
 .Python
 build/

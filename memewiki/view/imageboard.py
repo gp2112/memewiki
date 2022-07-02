@@ -1,10 +1,19 @@
 from flask import render_template
 
+def index(threads: list, username: str=None):
+    return render_template('imageboard/index.html', threads=threads, username=username)
 
-def thread(title: str, author: str, img: str, replies: list):
+def thread(thread, username=None):
     
-    return render_template('imageboard/thread.html', styles=['style.css'], 
-                                replies=replies, title=title,
-                                author=author, image=img
+    comments = thread.getComments()
+
+    return render_template('imageboard/thread.html', 
+                                replies=comments, title=thread.titulo,
+                                author=thread.usuario.nome, image=thread.midia.url,
+                                username=username, descricao=thread.desc, id=thread.id
             )
+
+def create(error: int=0, username: str=None):
+
+    return render_template('imageboard/create.html', error=error, username=username)
 
