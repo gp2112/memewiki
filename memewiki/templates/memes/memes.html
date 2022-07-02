@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+{% if created %}
+<div class="alert alert-success">
+    Meme enviado com sucesso!
+</div>
+{% endif %}
+
+<ul class="list-inline">
+    {% for meme in memes %}
+    <li class="list-unstyled">
+        <a href="/meme?id={{ meme.id }}">
+            <div class="card">
+                <img class="card-img-top" style="max-height: 200px" src="{{ url_for('static', filename='uploads/'+meme.midia.url) }}" width="200">
+                <div class="card-body">
+                    <p>por <a href="{{ meme.usuario.id }}">u/{{ meme.usuario.nome }}</a></p>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    {% endfor %}
+
+</ul>
+
+
+<form action="/memes/create" method="POST" enctype="multipart/form-data">
+    
+    <div class="row">
+        <div class="col-md-3">
+            <input type="file" name="image" id="image">
+        </div>
+        <div class="col-md-3">
+            {% if username %}
+                <input type="submit" class="btn btn-primary" value="Enviar um Meme">
+            {% else %}
+                <input type="submit" class="btn btn-primary" disabled value="Enviar um Meme">
+            {% endif %}
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}

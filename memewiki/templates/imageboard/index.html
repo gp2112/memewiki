@@ -4,7 +4,11 @@
 
 <ul class="list-group" id="threads">
     <div class="text-right">
-        <a href="thread/create" class="btn btn-primary">Criar uma Thread</a>
+        {% if username %}
+            <a href="thread/create" class="btn btn-primary">Criar uma Thread</a>
+        {% else %}
+            <button class="btn btn-primary" disabled>Criar uma Thread</button>
+        {% endif %}
     </div>
     {% for thread in threads %}
         <li class="list-group-item">
@@ -12,7 +16,7 @@
                 <a href="/board/thread/{{ thread.id }}"><h4>{{ thread.titulo }}</h4></a>
                 <p>
                     <a href="/u/{{ thread.usuario.id }}">u/{{ thread.usuario.nome }}</a>
-                    <span class="text-right text-black-50">{{ thread.datahora }}</span>
+                    <span class="text-right text-black-50">{{ thread.datahora.strftime('%d/%m/%Y - %H:%M') }}</span>
                 </p>
             </div>
             <a href="{{ url_for('static', filename='uploads/'+thread.midia.url) }}">

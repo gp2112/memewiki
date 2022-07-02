@@ -6,7 +6,7 @@ import os
 upload_dir = os.environ.get('MEMEWIKI_UPLOAD_PATH', 'memewiki/static/uploads')
 
 allowed_files = (
-        'png', 'jpg', 'gif', 'jpeg'
+        'png', 'jpg', 'gif', 'jpeg', 'webmp', 'webp'
         )
 
 def receiveImg(file) -> str:

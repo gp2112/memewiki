@@ -5,6 +5,8 @@ from memewiki.routes.login_bp import login_bp
 from memewiki.routes.signup_bp import signup_bp
 from memewiki.routes.logout_bp import logout_bp
 from memewiki.routes.meme_bp import meme_bp
+from memewiki.routes.memes_bp import memes_bp
+
 import os
 
 __version__ = '0.0.1'
@@ -16,11 +18,13 @@ app.register_blueprint(imageboard_bp, url_prefix='/board')
 app.register_blueprint(login_bp, url_prefix='/login')
 app.register_blueprint(signup_bp, url_prefix='/signup')
 app.register_blueprint(logout_bp, url_prefix='/logout')
-app.register_blueprint(meme_bp, url_prefix='/memes')
+app.register_blueprint(meme_bp, url_prefix='/meme')
+app.register_blueprint(memes_bp, url_prefix='/memes')
 
 
 app.secret_key = os.urandom(12)
 
 if __name__ == '__main__':
+    app.secret_key = b'l\xb1\xa0h.\x92\x0c\x95K\x00\x08m'
     app.run(host='::', debug=True)
 
