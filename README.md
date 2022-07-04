@@ -12,6 +12,7 @@ O objetivo da plataforma, além de ser uma "wiki" e um "hub" de memes, é també
 
 ![image](https://user-images.githubusercontent.com/26512375/177131557-1dfac7f0-5113-4e06-bbc4-fdd2d8616453.png)
 
+Obviamente, ele está em faze de protótipo, com um layout improvisado (ninguém do grupo curtia front end ...) :v
 
 ## Requisitos:
 
