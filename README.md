@@ -84,3 +84,30 @@ O arquivo app.py define, através do Framework Flask, onde estão as rotas da ap
 É na camada de models que está o código que faz comunicação com o banco de dados, usando a biblioteca [psycopg2](https://www.psycopg.org/). É essa biblioteca que lida com a comunicação com o driver do PostgreSQL e com proteção a SQL injection.
 
 Ao voltar da cadeia de chamadas à funções de camadas cada vez mais internas, a rota retorna uma view com as informações requisitadas, utilizando HTML e CSS.
+
+# Créditos
+
+- [Guilherme Paixão](https://github.com/gp2112)
+    - Modelagem Relacional da Base de Dados
+    - Aplicação: backend, frontend, Implementação no PostgreSQL
+    - Documentação da Aplicação
+    
+- [Lucas Almeida](https://github.com/lalmeida32)
+    - Modelagem Entidade-Relacionamento da Base de Dados
+    - Modelagem Relacional da Base de Dados
+    - Documentação do Modelo e Planejamento da Base de Dados
+    - Documentação da Aplicação
+    
+- [Ádrio Oliveira](https://github.com/adriooa)
+    - Modelagem Entidade-Relacionamento da Base de Dados
+    - Modelagem Relacional da Base de Dados
+    - Documentação do Modelo e Planejamento da Base de Dados
+
+- [Eduardo Rossi](https://github.com/RossiEduardo)
+    - Modelagem Entidade-Relacionamento da Base de Dados
+    - Modelagem Relacional da Base de Dados
+    - Documentação do Modelo e Planejamento da Base de Dados
+  
+- [Breno Pejon](https://github.com/BPejon)
+    - Implementação do Modelo Relacional em SQL
+    - Projeto da Aplicaç
