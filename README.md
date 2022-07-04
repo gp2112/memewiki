@@ -1,42 +1,27 @@
 # Memewiki
 
-## Project Structure
+## Requisitos:
 
-```tree
-memewiki
-│   ├── __init__.py
-│   ├── controllers
-│   ├── models
-│   ├── static
-│   ├── templates
-│   └── views
-├── poetry.lock
-├── pyproject.toml
-├── README.md
-└── tests
-    ├── __init__.py
-    └── test_memewiki.py
-```
+- python 3
+- postgresql
+
+## Instalação e Execução:
+
+    git clone https://github.com/gp2112/memewiki
+    cd memewiki
+    pip install .
+
+execute:
+
+    memewiki
+
+ou, caso possua o poetry:
+
+    cd memewiki
+    poetry install
+    poetry run memewiki
 
 
-## Development Environment Setup
-
-```bash
-$ python -m venv .env
-$ source .env/bin/activate
-$ pip install .
-```
-To exit your environment:
-
-```bash
-$ deactivate
-```
-
-or, if you have Poetry:
-
-```bash
-$ poetry install
-```
 
 ## PostgreSQL Install
 
