@@ -14,6 +14,15 @@ O objetivo da plataforma, além de ser uma "wiki" e um "hub" de memes, é també
 
 Obviamente, ele está em faze de protótipo, com um layout improvisado (ninguém do grupo curtia front end ...) :v
 
+### Moderação
+
+Muitos podem se assustar quando nos referimos a "100% aberto e livre", principalmente devido à má fama que os chans tm (e com razão).
+Mas cabe salientar que ser 100% livre implica necessariamente em não haver conteúdo que seja de ameaça a vida e existencia de outras pessoas, tal como fake news e discurso de ódio, afinal, isso por si só estaria violando o "livre" de outras pessoas. 
+
+A Wikipedia, por exemplo, só é tão livre, acessível e confiável hoje porque possui moderação.
+Por isso, a moderação se faz muito necessária e estará presente na Memewiki.
+
+
 ## Requisitos:
 
 - python 3
