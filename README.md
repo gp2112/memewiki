@@ -1,5 +1,11 @@
 # Memewiki
 
+Este é um projeto inicialmente implementado para um trabalho da disciplina de Base de Dados, do ICMC/USP.
+
+A ideia da Memewiki é ser uma plataforma brasileira que sirva como um "hub" de memes, com foco maior em memes nacionais, aos moldes de uma wikipedia, knowyoourmeme, rottentomatos, chans e reddit. Algumas das funcionalidades são a criação de uma página tipo "wiki" sobre um meme - por hora chamado de "meme base", que serve como uma "base" para outros memes derivados. Memes derivados, ou "normais", podem ser derivados de memes base, sendo praticamentte imagens comuns, sem muita informação, em que qualquer usuário possa criar de formma fácil e rápida.
+
+O objetivo da plataforma, além de ser uma "wiki" e um "hub" de memes, é também permitir com que novos memes sejam criados, tal como são feitos no chans, mas sem a parte do descontrole e anomia que permeiam nesses ambientes. Pra isso a Memewiki também possui um Image Board, onde qualquer usuário pode criar uma thread e comentar com texto e imagens.
+
 ![image](https://user-images.githubusercontent.com/26512375/177132413-e6e4add4-7c7f-47d0-b755-23450257c9f4.png)
 
 ![image](https://user-images.githubusercontent.com/26512375/177127314-b7dbe062-c051-4d66-b762-b260073cd984.png)
