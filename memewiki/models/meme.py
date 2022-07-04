@@ -16,13 +16,13 @@ class MemeComment:
         self.texto = texto
         self.midia = midia
 
-    def commit():
+    def commit(self):
         with db.conn() as conn:
             with conn.cursor() as cur:
                 cur.execute("""
                     INSERT INTO comentariomeme VALUES (%s,%s,%s,%s,%s);
                 """, (self.meme_id, self.datahora, self.usuario.id, 
-                        self.texto, self.midia.id))
+                        self.texto, self.midia.id if self.midia else None))
             conn.commit()
 
 

@@ -3,11 +3,14 @@
 
 {% block container %}
 
-<div class="row">
-    
+<div id="meme" class="row text-center">
     <img src="{{ url_for('static', filename='uploads/'+meme.midia.url) }}">
+    <p>Enviado por <a href="/u/{{ meme.usuario.id }}">{{ meme.usuario.nome }}</a></p>
+
 </div>
 
+<div class="row">
+    </div>
 
 
 
@@ -16,15 +19,15 @@
     <li>
        <dl>
             <dt class="reply-author">
-                <a href="/u/{{ reply.usuario.id }}">u/{{comment.usuario.nome}}</a>
+                <a href="/u/{{ comment.usuario.id }}">u/{{comment.usuario.nome}}</a>
                 <span style="font-size: 0.7em; margin-left: 1em">
-                    {{ comment.datahoracomentario.strftime('%d/%m/%Y - %H:%M') }}
+                    {{ comment.datahora.strftime('%d/%m/%Y - %H:%M') }}
                 </span>
             </dt>
             <dd class="reply-content">{{comment.texto}}</dd>
-            {% if comment.midia %}
-            <a href="{{ url_for('static', filename='uploads/'+reply.midia.url) }}">
-                <img src="{{ url_for('static', filename='uploads/'+reply.midia.url) }}" width="250">
+            {% if comment.midia and comment.midia.url %}
+            <a href="{{ url_for('static', filename='uploads/'+comment.midia.url) }}">
+                <img src="{{ url_for('static', filename='uploads/'+comment.midia.url) }}" width="250">
             </a>
             {% endif %}
         </dl>
@@ -32,5 +35,38 @@
 
 {% endfor %}
 </ul>
+
+<form action="/meme/comment?memeid={{ meme.id }}" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="form-group col col-md-5">
+            {% if username %}
+            <label for="mycontent">Comentando como {{ username }} <a href="/logout">(sair).</a></label>
+            {% else %}
+                <label for="mycontent"><a href="/login">Entre</a> ou <a href="/signup">registre-se</a> para poder comentar!</label>
+            {% endif %}
+            <textarea id="mycontent" class="form-control" name="text" required></textarea>
+            <div class="row">
+                <div id="captcha" class="col col-md-5">
+                    <img src="data:image/png;base64,{{ captcha.data }}">
+                    <input type="text" name="captcha-answer" class="form-control"
+                            placeholder="Digite os caracteres do captcha aqui." required>
+                </div>
+                <div class="col col-md-6">
+                    <a href="../" class="btn btn-default">Voltar</a>
+                    {% if username %}
+                        <input type="submit" value="Enviar" class="btn btn-primary">
+                    {% else %}
+                        <input type="submit" value="Enviar" class="btn btn-primary" disabled>
+                    {% endif %}
+                </div>
+            </div>
+
+            <input type="file" name="image">
+        </div>
+                <input type="hidden" name="captcha-id" value="{{ captcha.id }}"> 
+        
+            </div>
+</form>
+
 
 {% endblock %}

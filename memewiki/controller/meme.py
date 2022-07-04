@@ -48,6 +48,26 @@ def create():
 
     return redirect(f'/meme?id={meme_.id}')
 
+def createComment():
+    username = session.get('username')
+    if not username:
+        return "Não autorizado", 401
+    meme_id = request.args.get('memeid')
 
+    try:
+        captcha.captchaControl(request.form)
+    except captcha.CaptchaException:
+        return redirect(f'/meme?id={meme_id}')
+
+    text = request.form.get('text')
     
+    file = request.files.get('image')
+    
+    midia_id = None
+    if file:
+        midia_id = midiaService.createMidia(file)
+
+    comment = memeService.createComment(meme_id, username, text, midia_id) 
+    
+    return redirect(request.headers.get('Referer', '/'))
 
