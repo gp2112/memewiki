@@ -25,7 +25,6 @@ def createMemeBase(titulo: str, texto: str, midia_id: int, username: str):
     user_ = user.getUserByName(username)
     midia_ = midia.getMidia(midia_id)
 
-    memebase_ = memebase.MemeBase(None, titulo, midia_, datetime.now(), 
-                            None, None, texto, user_)
+    memebase_ = memebase.MemeBase(None, titulo, midia_, datetime.now(), texto, user_)
     memebase_.commit()
     return memebase_
