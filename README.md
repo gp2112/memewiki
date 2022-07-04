@@ -82,6 +82,6 @@ Se tiver algum problema, provavelmente tem a resolução na [Arch Wiki](https://
 
 O arquivo app.py define, através do Framework Flask, onde estão as rotas da aplicação. Os arquivos de rota mapeam funções do controller, que por sua vez chamam serviços, que por sua vez acessam models.
 
-É na camada de models que está o código que faz comunicação com o banco de dados, usando a biblioteca psycopg2. É essa biblioteca que lida com a comunicação com o driver do PostgreSQL e com proteção a SQL injection.
+É na camada de models que está o código que faz comunicação com o banco de dados, usando a biblioteca [psycopg2](https://www.psycopg.org/). É essa biblioteca que lida com a comunicação com o driver do PostgreSQL e com proteção a SQL injection.
 
 Ao voltar da cadeia de chamadas à funções de camadas cada vez mais internas, a rota retorna uma view com as informações requisitadas, utilizando HTML e CSS.
