@@ -15,6 +15,19 @@ body {
     background-color: rgba(255, 255, 255, 0.9)
 }
 
+input {
+    margin: 2px;
+}
+
+#captcha {
+}
+
+#captcha img {
+    border: 0.2em solid black;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
 #menu {
     width: 70%;
     margin: auto;
@@ -27,13 +40,17 @@ body {
 }
 
 #meme img {
-    width: 50%;
-    max-height: 300px;
+    width: 30%;
+    max-height: 25em;
     border: 0.4em solid rgba(205, 0, 204, 1)
 }
 
 #replies-list {
     margin: 5%;
+}
+
+#memebase img {
+    width: 100%;
 }
 
 #post img {

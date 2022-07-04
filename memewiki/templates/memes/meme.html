@@ -3,9 +3,14 @@
 
 {% block container %}
 
-<div id="meme" class="text-center">
+<div class="row">
+    
     <img src="{{ url_for('static', filename='uploads/'+meme.midia.url) }}">
 </div>
+
+
+
+
 <ul id="replies-list" class="list-unstyled">
 {% for comment in comments %}
     <li>

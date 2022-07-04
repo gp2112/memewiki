@@ -1,4 +1,5 @@
 from flask import render_template
+from memewiki.security import captcha
 
 def index(threads: list, username: str=None):
     return render_template('imageboard/index.html', threads=threads, username=username)
@@ -14,6 +15,10 @@ def thread(thread, username=None):
             )
 
 def create(error: int=0, username: str=None):
+    img_cap = captcha.Captcha(n=7, width=280, height=80)
+    img_cap.genText()
 
-    return render_template('imageboard/create.html', error=error, username=username)
+    captcha.captchas_activated[img_cap.id] = img_cap
+
+    return render_template('imageboard/create.html', captcha=img_cap, error=error, username=username)
 

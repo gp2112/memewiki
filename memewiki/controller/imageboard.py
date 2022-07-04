@@ -2,6 +2,7 @@ from flask import request, session, redirect
 from memewiki.view import imageboard as imageboardView
 from memewiki.services import imageboard as imageboardService
 from memewiki.services import midia as midiaService
+from memewiki.security import captcha
 
 def index():
      
@@ -24,6 +25,11 @@ def create():
     return imageboardView.create(username=username, error=error)
 
 def createPost():
+    
+    try:
+        captcha.captchaControl(request.form)
+    except captcha.CaptchaException:
+        return redirect('/board/thread/create?error=7')
 
     title = request.form.get('title')
     desc = request.form.get('descricao')

@@ -6,6 +6,9 @@ from memewiki.routes.signup_bp import signup_bp
 from memewiki.routes.logout_bp import logout_bp
 from memewiki.routes.meme_bp import meme_bp
 from memewiki.routes.memes_bp import memes_bp
+from memewiki.routes.memebase_bp import memebase_bp
+
+from jinja_markdown import MarkdownExtension
 
 import os
 
@@ -20,9 +23,11 @@ app.register_blueprint(signup_bp, url_prefix='/signup')
 app.register_blueprint(logout_bp, url_prefix='/logout')
 app.register_blueprint(meme_bp, url_prefix='/meme')
 app.register_blueprint(memes_bp, url_prefix='/memes')
-
+app.register_blueprint(memebase_bp, url_prefix='/w')
 
 app.secret_key = os.urandom(12)
+
+app.jinja_env.add_extension(MarkdownExtension)
 
 if __name__ == '__main__':
     app.secret_key = b'l\xb1\xa0h.\x92\x0c\x95K\x00\x08m'

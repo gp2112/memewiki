@@ -3,34 +3,7 @@ from memewiki.models import user
 from memewiki.models import midia
 from datetime import datetime
 
-class MemeBase:
 
-    def __init__(self, id: int, titulo: str, thumb: midia.Midia, 
-            datahorapub: datetime, datahoraedicao: datetime,
-            usuarioedicao: user.User, text: str, usuariopub: user.User):
-
-        self.id = id
-        self.titulo = titulo
-        self.thumb = thumb
-        self.datahorapub = datahorapub
-        self.datahoraedicao = datahoraedicao
-        self.usuarioedicao = usuarioedicao
-        self.text = text
-        self.usuariopub = usuariopub
-
-    def commit():
-        with db.conn() as conn:
-            with conn.cursor() as cur:
-                cur.execute("""
-                    INSERT INTO (titulo, thumb, datahorapublicacao, 
-                        datahoraedicao, usuarioedicao, richtext,
-                        idusuariopublicou) VALUES
-                    (%s,%s,%s,%s,%s,%s,%s) RETURNING id;
-                """, (self.titulo, self.thumb.id, self.datahorapub,
-                    self.datahoraedicao, self.text, self.usuariopub))
-
-                self.id = cur.fetchone()[0]
-            conn.commit()
 
 class MemeComment:
 

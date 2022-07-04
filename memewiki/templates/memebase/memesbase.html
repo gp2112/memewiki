@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<h1 id="meme-title">{{ memebase.titulo }}</h1>
+<p id="author">publicado por <a href="/u/{{ memebase.usuariopub.id }}">u/{{ memebase.usuariopub.nome }}</a> - {{ memebase.datahorapub.strftime('%d/%m/%Y') }}</p>
+
+<div class="row">
+
+    <div id="memebase" class="col-md-4">
+        <img src="{{ url_for('static', filename='uploads/'+memebase.thumb.url) }}">
+    </div>
+    <div class="col-8">
+        <article>
+        {% markdown %}
+{{ memebase.text }}
+        {% endmarkdown %}
+        </article>
+    </div>
+</div>
+
+<ul id="memebase-memes" class="list-inline">
+    {% for meme in memes %}
+        <li class="meme list-unstyled">
+            <img src="{{ url_for('static', filename='uploads/'+meme.midia.url) }}">
+            <div class="row">
+                <div class="col col-3">
+                    <a href="/u/{{ meme.usuario.id }}">por u/{{ meme.usuario.nome }}</a>
+                </div>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

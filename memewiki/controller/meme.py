@@ -2,6 +2,8 @@ from flask import session, request, redirect
 from memewiki.services import midia as midiaService
 from memewiki.services import meme as memeService 
 from memewiki.view import meme as memeView
+from memewiki.services import memebase as memebaseService
+from memewiki.security import captcha
 
 def meme():
     meme_id = request.args.get('id')
@@ -22,9 +24,16 @@ def meme():
 
 def memes():
     memes = memeService.getLastMemes()
-    return memeView.memes(memes, username=session.get('username'))
+    memesbase = memebaseService.getLastMemesbase()
+    return memeView.memes(memes, memesbase, username=session.get('username'))
 
 def create():
+
+    try:
+        captcha.captchaControl(request.form)
+    except captcha.CaptchaException:
+        return redirect('/memes?error=7')
+
     username = session.get('username')
     if not username:
         return "Você deve estar logado :(", 401
