@@ -2,8 +2,26 @@
 from memewiki.models import imageboard
 from memewiki.models import user
 from memewiki.models import midia
-
 from datetime import datetime
+
+import enum
+
+class ErrorsTypes(enum.Enum):
+    voidComment = 1
+
+
+
+error = ErrorsTypes
+
+class ImageBoardServiceError(Exception):
+    
+    msgs = {
+        error.voidComment: 'Comentário vazio!'
+    }
+
+    def __init__(self, error_type):
+        super().__init__(self.msgs[error_type])
+
 
 
 
@@ -28,13 +46,10 @@ def createThread(title: str, desc: str, username: str, midia_id: int) -> int:
     thread.commit()
     return thread.id
 
-"""
-def __init__(self, usuario: user.User, idthread: int, 
-                    datahora: int, texto: str, midia: midia.Midia):
-
-"""
-
 def createComment(username, thread_id, text, midia_id=None):
+    if not ((text and len(text)) or midia_id):
+        raise ImageBoardServiceError(error.voidComment)
+
     user_ = user.getUserByName(username);
     midia_ = None
     if midia_id:

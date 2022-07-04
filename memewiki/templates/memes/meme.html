@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+
+<div class="row">
+    
+    <img src="{{ url_for('static', filename='uploads/'+meme.midia.url) }}">
+</div>
+
+
+
+
+<ul id="replies-list" class="list-unstyled">
+{% for comment in comments %}
+    <li>
+       <dl>
+            <dt class="reply-author">
+                <a href="/u/{{ reply.usuario.id }}">u/{{comment.usuario.nome}}</a>
+                <span style="font-size: 0.7em; margin-left: 1em">
+                    {{ comment.datahoracomentario.strftime('%d/%m/%Y - %H:%M') }}
+                </span>
+            </dt>
+            <dd class="reply-content">{{comment.texto}}</dd>
+            {% if comment.midia %}
+            <a href="{{ url_for('static', filename='uploads/'+reply.midia.url) }}">
+                <img src="{{ url_for('static', filename='uploads/'+reply.midia.url) }}" width="250">
+            </a>
+            {% endif %}
+        </dl>
+    </li>
+
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+{% if created %}
+<div class="alert alert-success">
+    Meme enviado com sucesso!
+</div>
+{% endif %}
+
+<div class="row">
+    <h2>Últimos Memes Enviados</h2>
+    <ul class="list-inline center">
+        {% for meme in memes %}
+        <li class="list-unstyled">
+            <a href="/meme?id={{ meme.id }}">
+                <div class="card">
+                    <img class="card-img-top" style="max-height: 200px" src="{{ url_for('static', filename='uploads/'+meme.midia.url) }}" width="200">
+                    <div class="card-body">
+                        <p>por <a href="{{ meme.usuario.id }}">u/{{ meme.usuario.nome }}</a></p>
+                    </div>
+                </div>
+            </a>
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+
+    <form action="/meme/create" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="captcha-id" value="{{ captcha.id }}"> 
+        <div id="captcha" class="row">
+            <div class="col col-md-3">
+                <img src="data:image/png;base64,{{ captcha.data }}">
+            </div>
+            <div class="col col-md-3 text-right">
+                <input type="text" class="form-control" name="captcha-answer" placeholder="Digite os caracteres do captcha." required>
+                            
+                    {% if username %}
+                        <input type="submit" class="btn btn-primary" value="Meme">
+                    {% else %}
+                        <input type="submit" class="btn btn-primary" disabled value="Enviar">
+                    {% endif %}
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3">
+                <input type="file" name="image" id="image">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">
+    <h2>Últimos Memes Base Enviados</h2>
+    <ul class="list-inline center">
+        {% for meme in memesbase %}
+        <li class="list-unstyled">
+            <a href="/w/{{ meme.titulo }}">
+                <h3>{{ meme.titulo }}</h3>
+                <div class="card">
+                    <img class="card-img-top" style="max-height: 200px" src="{{ url_for('static', filename='uploads/'+meme.thumb.url) }}" width="200">
+                    <div class="card-body">
+                        <p>por <a href="u/{{ meme.usuariopub.id }}">u/{{ meme.usuariopub.nome }}</a></p>
+                    </div>
+                </div>
+            </a>
+        </li>
+
+        {% endfor %}
+
+    </ul>
+</div>
+<div class="row">
+    <a href="/w/create" class="btn btn-primary">Criar Meme Base</a>
+</div>
+
+
+{% endblock %}

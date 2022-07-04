@@ -1,20 +1,29 @@
 from flask import request, redirect
 from memewiki.view import signup as signupView
 from memewiki.services import user as userService
+from memewiki.security import captcha
 from datetime import datetime
+
 import re
+
 
 def signup():
     error = request.args.get('error', 0)
     return signupView.signupPage(error=int(error))
 
 def signupPost():
+
+    try:
+        captcha.captchaControl(request.form)
+    except captcha.CaptchaException:
+        return redirect('/signup?error=7')
+
     username = request.form.get('username', '')
     email = request.form.get('email', '')
     senha = request.form.get('password', '')
     senhaRep = request.form.get('passwordrep', '')
     birth = request.form.get('birth', '')
-
+    
     if '' in (username, email, senha, senhaRep):
         return redirect('/signup?error=1', 301)
 
@@ -33,6 +42,7 @@ def signupPost():
     if len(senha) < 8:
         return redirect('/signup?error=6', 301)
 
+    
     birth_tmstp = int(datetime.strptime('2011-09-23', '%Y-%m-%d').timestamp())
     usr = userService.createUser(username, email, senha, birth_tmstp, 'comum')
     

@@ -4,4 +4,15 @@
 
 {% block container %}
 
+<div class="row">
+    {% if username %}
+    <h2>Bem-vindo de volta, {{ username }} <a href="/logout">(sair)</a> !</h2>
+    {% else %}
+    <h2>Seja bem vindo, caro visitante!</h2>
+    {% endif %}
+</div>
+
+<div class="row justify-content-center">
+</div>
+
 {% endblock %}

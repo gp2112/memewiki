@@ -1,4 +1,5 @@
 from flask import render_template
+from memewiki.security import captcha
 
 def signupPage(error=0):
     error_msg = None
@@ -20,5 +21,13 @@ def signupPage(error=0):
     elif error==6:
         error_msg = 'A senha deve ter ao menos 8 caracteres.'
 
-    return render_template('signup.html', error_msg=error_msg)
+    elif error==7:
+        error_msg = 'Resposta do captcha incorreta!'
+
+    img_cap = captcha.Captcha(n=7, width=280, height=80)
+    img_cap.genText()
+
+    captcha.captchas_activated[img_cap.id] = img_cap
+
+    return render_template('signup.html', captcha=img_cap, error_msg=error_msg)
 

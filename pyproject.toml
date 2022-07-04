@@ -9,6 +9,8 @@ python = "^3.10"
 psycopg = "^3.0.14"
 Flask = "^2.1.2"
 psycopg2 = "^2.9.3"
+captcha = "^0.4"
+jinja-markdown = "^1.210911"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

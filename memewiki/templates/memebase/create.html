@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+
+{% block container %}
+<form action="/w/create" method="POST" enctype="multipart/form-data">
+        <div class="row">
+
+            <div class="col">
+                <h3>Título: </h3>
+                <input type="text" id="titulo" class="form-control" placeholder="Título do meme" name="titulo" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Texto</h3>
+                <p>Escreva tudo o que você sabe sobre o meme: sua história, criadores, curiosidades, etc...</p>
+                <p><strong>Dica:</strong> Utilize <a href="https://www.markdownguide.org/basic-syntax">markdown</a> para que seu texto fique mais elegante :)</p>
+                <textarea id="text" cols="100" rows=10 class="form-control" name="texto" required></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-3">
+                <input type="file" name="image" id="image" require>
+            </div>
+            
+            <input type="hidden" name="captcha-id" value="{{ captcha.id }}"> 
+            
+            <div id="captcha" class="col col-md-3">
+                <img src="data:image/png;base64,{{ captcha.data }}">
+            </div>
+            <div class="col col-md-3 text-right">
+                <input type="text" class="form-control" name="captcha-answer" 
+                    placeholder="Digite os caracteres do captcha." required>
+                                
+                <a href="../" class="btn btn-default">Voltar</a>
+                <input type="submit" class="btn btn-primary" value="Enviar">
+                                    
+            </div>
+        </div>
+</form>
+
+{% endblock %}
