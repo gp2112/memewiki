@@ -17,3 +17,14 @@ def createMeme(username: str, midia_id: int) -> meme.Meme:
     meme_ = meme.Meme(None, user_, datetime.now(), midia_, 0, 0)
     meme_.commit()
     return meme_
+
+def createComment(meme_id: int, username: str, text: str, midia_id: int) -> meme.MemeComment:
+    
+    user_ = user.getUserByName(username)
+    midia_ = None
+    if midia_id:
+        midia_ = midia.getMidia(midia_id)
+
+    comment = meme.MemeComment(meme_id, datetime.now(), user_, text, midia_)
+    comment.commit()
+    return comment
