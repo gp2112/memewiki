@@ -1,5 +1,12 @@
 # Memewiki
 
+![image](https://user-images.githubusercontent.com/26512375/177132413-e6e4add4-7c7f-47d0-b755-23450257c9f4.png)
+
+![image](https://user-images.githubusercontent.com/26512375/177127314-b7dbe062-c051-4d66-b762-b260073cd984.png)
+
+![image](https://user-images.githubusercontent.com/26512375/177131557-1dfac7f0-5113-4e06-bbc4-fdd2d8616453.png)
+
+
 ## Requisitos:
 
 - python 3
