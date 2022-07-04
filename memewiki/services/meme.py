@@ -14,6 +14,6 @@ def createMeme(username: str, midia_id: int) -> meme.Meme:
     user_ = user.getUserByName(username)
     midia_ = midia.getMidia(midia_id)
 
-    meme_ = meme.Meme(None, user_, datetime.now(), midia_, 0, 0)
+    meme_ = meme.Meme(None, user_, datetime.now(), midia_)
     meme_.commit()
     return meme_

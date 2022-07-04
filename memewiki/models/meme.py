@@ -31,25 +31,21 @@ class MemeComment:
 class Meme:
 
     def __init__(self, id: int, usuario: user.User, datahora: datetime, 
-            midia_: midia.Midia, mediaavaliacoes: float, numeroavaliacoes: int):
+            midia_: midia.Midia):
 
         self.id = id
         self.usuario = usuario
         self.datahora = datahora
         self.midia = midia_
-        self.mediaavaliacoes = mediaavaliacoes
-        self.numeroavaliacoes = numeroavaliacoes
 
     def commit(self):
 
         with db.conn() as conn:
             with conn.cursor() as cur:
                 cur.execute("""
-                    INSERT INTO meme (idusuario, datahora, idmidia, 
-                            mediaavaliacoes, numeroavaliacoes)
-                    VALUES (%s,%s,%s,%s,%s) RETURNING id;
-               """, (self.usuario.id, self.datahora, self.midia.id, 
-                   self.mediaavaliacoes, self.numeroavaliacoes))
+                    INSERT INTO meme (idusuario, datahora, idmidia)
+                    VALUES (%s,%s,%s) RETURNING id;
+               """, (self.usuario.id, self.datahora, self.midia.id))
                 self.id = cur.fetchone()[0]
             conn.commit()
 
@@ -70,7 +66,7 @@ class Meme:
             midia_ = midia.Midia(*c[12:])
 
             comments.append(
-                MemeComment(c[0], user_, c[3], midia_)
+                MemeComment(c[0], c[1], user_, c[3], midia_)
             )
         return comments
 
@@ -88,10 +84,10 @@ def getMeme(id: int) -> Meme:
     if len(r) == 0 or r is None:
         raise Exception('Não existe Meme')
 
-    midia_ = midia.Midia(*r[6:9])
-    user_ = user.User(*r[9:])
+    midia_ = midia.Midia(*r[4:7])
+    user_ = user.User(*r[7:])
 
-    return Meme(id, user_, r[2], midia_, *r[4:6])
+    return Meme(id, user_, r[2], midia_)
 
 
 def getMemes(limit: int) -> list:
@@ -106,10 +102,10 @@ def getMemes(limit: int) -> list:
             r = cur.fetchall()
     memes = []
     for c in r:
-        midia_ = midia.Midia(*c[6:9])
-        user_ = user.User(*c[9:16])
+        midia_ = midia.Midia(*c[4:7])
+        user_ = user.User(*c[7:14])
         memes.append(
-            Meme(c[0], user_, c[2], midia_, *c[4:6])
+            Meme(c[0], user_, c[2], midia_)
         )
     return memes
 
