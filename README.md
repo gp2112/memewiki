@@ -85,7 +85,7 @@ O arquivo app.py define, através do Framework Flask, onde estão as rotas da ap
 
 Ao voltar da cadeia de chamadas à funções de camadas cada vez mais internas, a rota retorna uma view com as informações requisitadas, utilizando HTML e CSS.
 
-# Créditos
+## Créditos
 
 - [Guilherme Paixão](https://github.com/gp2112)
     - Modelagem Relacional da Base de Dados
