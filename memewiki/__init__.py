@@ -29,7 +29,5 @@ app.secret_key = os.urandom(12)
 
 app.jinja_env.add_extension(MarkdownExtension)
 
-if __name__ == '__main__':
-    app.secret_key = b'l\xb1\xa0h.\x92\x0c\x95K\x00\x08m'
-    app.run(host='::', debug=True)
+
 

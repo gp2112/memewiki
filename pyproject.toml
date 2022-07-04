@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["gp2112 <me@guip.dev>"]
 
+[tool.poetry.scripts]
+memewiki = "memewiki.__main__:main"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 psycopg = "^3.0.14"
